@@ -6,6 +6,8 @@ import md5 from "md5";
 import { Crawler, Page } from "./crawler";
 import { truncateStringByBytes } from "@/utils/truncateString"
 
+type PineconeRecord = typeof PineconeRecord
+
 interface SeedOptions {
   splittingMethod: string
   chunkSize: number
@@ -37,7 +39,7 @@ async function seed(url: string, limit: number, indexName: string, options: Seed
 
     // Create Pinecone index if it does not exist
     const indexList = await pinecone.listIndexes();
-    const indexExists = indexList.some(index => index.name === indexName)
+    const indexExists = indexList.some((index: { name: string; }) => index.name === indexName)
     if (!indexExists) {
       await pinecone.createIndex({
         name: indexName,
