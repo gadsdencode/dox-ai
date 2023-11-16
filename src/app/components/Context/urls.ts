@@ -1,6 +1,6 @@
 export const urls = [{
-  url: "https://e360.yale.edu/digest/indonesia-malaysia-deforestation",
-  title: "Indonesia Deforestation",
+  url: "https://www.cms.gov/outreach-and-education/medicare-learning-network-mln/mlnproducts/downloads/msp_fact_sheet.pdf",
+  title: "Medicare Learning Network",
   seeded: false,
   loading: false,
 },
