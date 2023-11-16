@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getContext } from "@/utils/context";
 import { ScoredPineconeRecord } from "@pinecone-database/pinecone";
 
+type ScoredPineconeRecord = typeof ScoredPineconeRecord
+
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json()
