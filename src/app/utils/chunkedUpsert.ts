@@ -1,5 +1,8 @@
 import type { Index, PineconeRecord } from '@pinecone-database/pinecone';
 
+type Index = typeof Index
+type PineconeRecord = typeof PineconeRecord
+
 const sliceIntoChunks = <T>(arr: T[], chunkSize: number) => {
   return Array.from({ length: Math.ceil(arr.length / chunkSize) }, (_, i) =>
     arr.slice(i * chunkSize, (i + 1) * chunkSize)
