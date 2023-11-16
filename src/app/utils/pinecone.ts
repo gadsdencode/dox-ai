@@ -1,5 +1,7 @@
 import { Pinecone, type ScoredPineconeRecord } from "@pinecone-database/pinecone";
 
+type ScoredPineconeRecord = typeof ScoredPineconeRecord
+
 export type Metadata = {
   url: string,
   text: string,
@@ -8,7 +10,7 @@ export type Metadata = {
 }
 
 // The function `getMatchesFromEmbeddings` is used to retrieve matches for the given embeddings
-const getMatchesFromEmbeddings = async (embeddings: number[], topK: number, namespace: string): Promise<ScoredPineconeRecord<Metadata>[]> => {
+const getMatchesFromEmbeddings = async (embeddings: number[], topK: number, namespace: string): Promise<ScoredPineconeRecord[]> => {
   // Obtain a client for Pinecone
   const pinecone = new Pinecone();
 
@@ -19,12 +21,12 @@ const getMatchesFromEmbeddings = async (embeddings: number[], topK: number, name
 
   // Retrieve the list of indexes to check if expected index exists
   const indexes = await pinecone.listIndexes()
-  if (indexes.filter(i => i.name === indexName).length !== 1) {
+  if (indexes.filter((i: { name: string; }) => i.name === indexName).length !== 1) {
     throw new Error(`Index ${indexName} does not exist`)
   }
 
   // Get the Pinecone index
-  const index = pinecone!.Index<Metadata>(indexName);
+  const index = pinecone!.Index(indexName);
 
   // Get the namespace
   const pineconeNamespace = index.namespace(namespace ?? '')

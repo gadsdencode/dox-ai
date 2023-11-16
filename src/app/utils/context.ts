@@ -2,6 +2,8 @@ import { ScoredVector } from "@pinecone-database/pinecone";
 import { getMatchesFromEmbeddings } from "./pinecone";
 import { getEmbeddings } from './embeddings'
 
+type ScoredVector = typeof ScoredVector
+
 export type Metadata = {
   url: string,
   text: string,
